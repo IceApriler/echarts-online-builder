@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<!-- saved from url=(0140)https://echarts.apache.org/zh/builder/echarts.html?version=5.3.3&charts=bar,pie&components=gridSimple,title,legendScroll,tooltip&source=true -->
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    <link rel="dns-prefetch" href="https://registry.npmmirror.com/">
+    <link rel="dns-prefetch" href="https://fastly.jsdelivr.net/">
+    <link rel="shortcut icon" href="https://echarts.apache.org/en/images/favicon.png">
+    <script src="./esl.js"></script>
+    <script src="./uglifyjs.js"></script>
+
+    <style type="text/css">
+        body {
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        #log {
+            width: 700px;
+            max-width: 100vw;
+            flex-grow: 1;
+            padding: 0 20px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            text-align: left;
+            line-height: 1.2;
+            font-size: 16px;
+            word-break: break-word;
+            overflow-y: auto;
+            scrollbar-width: thin;
+        }
+    </style>
+    <script data-require-id="build" src="./build.js" async=""></script>
+    <script data-require-id="lib/FileSaver" src="./FileSaver.js" async=""></script>
+    <script data-require-id="rollup" src="./rollup.browser.js" async=""></script>
+    <script data-require-id="transformDev" src="./transform-dev-bundle.js" async=""></script>
+    <style>
+        .lang_radio {
+            display: none;
+        }
+
+        .lang_radio_img {
+            vertical-align: unset !important;
+            width: 13px !important;
+            height: 13px !important;
+            margin-top: 0px !important;
+            cursor: pointer;
+            margin-right: 3px !important;
+            margin-top: 4px !important;
+            display: inline;
+            min-height: unset !important;
+            min-width: unset !important;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1 id="tip">
+        Building...
+    </h1>
+    <div id="log"></div>
+
+    <script>
+        var BUILD_CONFIG = {};
+        if (location.search) {
+            var searchParams = new URLSearchParams(location.search);
+            searchParams.forEach(function (value, key) {
+                // for XSS
+                BUILD_CONFIG[key.toLowerCase()] = value.replace(/[^\w-,.]/g, '');
+            });
+        }
+
+        require.config({
+            paths: {
+                'rollup': 'lib/rollup.browser',
+                'transformDev': 'lib/transform-dev-bundle'
+            },
+            urlArgs: 'v=1744356719901'
+        });
+
+        require(['build']);
+    </script>
+
+</body>
+</html>
