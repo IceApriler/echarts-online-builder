@@ -1,5 +1,13 @@
 /* global BUILD_CONFIG, UglifyJS */
+
 define(function (require) {
+    // 检查URL参数
+    if (!window.location.search) {
+        var input = prompt('当前URL没有参数，是否需要添加参数？(例如: version=5.3.3&charts=bar,pie)', '');
+        if (input) {
+            window.location.search = input;
+        }
+    }
 
     var saveAs = require('./lib/FileSaver');
     var rollup = require('rollup');
@@ -15,7 +23,10 @@ define(function (require) {
 
     var version = BUILD_CONFIG.version || 'latest';
     var isVersion5 = version === 'latest' || +version[0] >= 5;
-    var jsDelivrBase = 'https://cdn.jsdelivr.net/npm';
+
+    // 这两个哪个能访问通，用哪个
+    // var jsDelivrBase = 'https://cdn.jsdelivr.net/npm';
+    var jsDelivrBase = 'https://unpkg.com';
 
     var urlArgs = '__v__=' + (+new Date());
 
